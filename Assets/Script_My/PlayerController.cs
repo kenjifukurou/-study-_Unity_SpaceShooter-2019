@@ -71,15 +71,16 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // input for PC
-        //float moveHorizontal = Input.GetAxis("Horizontal");
-        //float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-        //Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
+        Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
 
         // input for Mobile using tilt
-        Vector3 accelerationRaw = Input.acceleration;
-        Vector3 acceleration = FixAcceleration(accelerationRaw);
-        Vector3 movement = new Vector3(acceleration.x, 0, acceleration.y);
+        //Vector3 accelerationRaw = Input.acceleration;
+        //Vector3 acceleration = FixAcceleration(accelerationRaw);
+        //Vector3 movement = new Vector3(acceleration.x, 0, acceleration.y);
+
         rb.velocity = movement * speed;
 
         //constraint position
@@ -87,6 +88,7 @@ public class PlayerController : MonoBehaviour
         float zPos = Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax);
         rb.position = new Vector3(xPos, 0, zPos);
 
-        rb.rotation = Quaternion.Euler(0.0f, acceleration.x * tiltY, acceleration.x * tiltZ);
+        //rb.rotation = Quaternion.Euler(0.0f, acceleration.x * tiltY, acceleration.x * tiltZ);
+        //rb.rotation = Quaternion.Euler(0.0f, moveHorizontal.x * tiltY, moveVertical.x * tiltZ);
     }
 }
